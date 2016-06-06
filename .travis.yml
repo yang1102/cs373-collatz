@@ -22,13 +22,4 @@ before_script:
 script:
     - date
     - ls -al
-
-# blacklist
-branches:
-  except:
-    - master
-
-# whitelist
-branches:
-  only:
-    - dev
+    - make test

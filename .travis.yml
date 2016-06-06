@@ -22,7 +22,6 @@ before_script:
 script:
     - date
     - ls -al
-    - make test
 
 # blacklist
 branches:

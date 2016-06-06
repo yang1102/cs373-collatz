@@ -23,3 +23,13 @@ script:
     - date
     - ls -al
     - make test
+
+# blacklist
+branches:
+  except:
+    - master
+
+# whitelist
+branches:
+  only:
+    - dev

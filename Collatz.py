@@ -33,11 +33,10 @@ def collatz_eval(i, j):
     """
 
     # <your code>
-    if i > j :
-        return 0
-
     max_result = 0
-    for s in range(i,j+1):
+    low = min(i,j)
+    up = max(i,j)
+    for s in range(low,up+1):
         result = 1
         while s!=1:
             if s%2==0:

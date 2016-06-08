@@ -33,11 +33,14 @@ class TestCollatz (TestCase):
         self.assertEqual(i,  1)
         self.assertEqual(j, 10)
 
+    #Test read range
     def test_read_2(self):
-        s = "1 1000000\n"
+        s = "1 999999\n"
         i, j = collatz_read(s)
         self.assertEqual(i,  1)
-        self.assertEqual(j, 1000000)
+        self.assertEqual(j, 999999)
+
+    #Test blank space
     def test_read_3(self):
         s = "100              200\n"
         i, j = collatz_read(s)
@@ -66,10 +69,11 @@ class TestCollatz (TestCase):
     def test_eval_5(self):
         v = collatz_eval(5, 5)
         self.assertEqual(v, 6)
-    #Test no number in the range
+
+    #Test reversed number
     def test_eval_6(self):  
         v = collatz_eval(6, 5)
-        self.assertEqual(v, 0)
+        self.assertEqual(v, 9)
     def test_eval_7(self):
         v = collatz_eval(1, 1)
         self.assertEqual(v, 1)
@@ -85,8 +89,8 @@ class TestCollatz (TestCase):
     #Test if the number out of range
     def test_print_2(self):
         w = StringIO()
-        collatz_print(w, 1000000, 999999, 0)
-        self.assertEqual(w.getvalue(), "1000000 999999 0\n")
+        collatz_print(w, 999999, 999998, 259)
+        self.assertEqual(w.getvalue(), "999999 999998 259\n")
 
     # -----
     # solve

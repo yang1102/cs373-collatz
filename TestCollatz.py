@@ -27,11 +27,22 @@ class TestCollatz (TestCase):
     # read
     # ----
 
-    def test_read(self):
+    def test_read_1(self):
         s = "1 10\n"
         i, j = collatz_read(s)
         self.assertEqual(i,  1)
         self.assertEqual(j, 10)
+
+    def test_read_2(self):
+        s = "1 1000000\n"
+        i, j = collatz_read(s)
+        self.assertEqual(i,  1)
+        self.assertEqual(j, 1000000)
+    def test_read_3(self):
+        s = "100              200\n"
+        i, j = collatz_read(s)
+        self.assertEqual(i, 100)
+        self.assertEqual(j, 200)
 
     # ----
     # eval
@@ -52,15 +63,30 @@ class TestCollatz (TestCase):
     def test_eval_4(self):
         v = collatz_eval(900, 1000)
         self.assertEqual(v, 174)
-
+    def test_eval_5(self):
+        v = collatz_eval(5, 5)
+        self.assertEqual(v, 6)
+    #Test no number in the range
+    def test_eval_6(self):  
+        v = collatz_eval(6, 5)
+        self.assertEqual(v, 0)
+    def test_eval_7(self):
+        v = collatz_eval(1, 1)
+        self.assertEqual(v, 4)
     # -----
     # print
     # -----
 
-    def test_print(self):
+    def test_print_1(self):
         w = StringIO()
         collatz_print(w, 1, 10, 20)
         self.assertEqual(w.getvalue(), "1 10 20\n")
+
+    #Test if the number out of range
+    def test_print_2(self):
+        w = StringIO()
+        collatz_print(w, 1000000, 999999, 0)
+        self.assertEqual(w.getvalue(), "1000000 999999 0\n")
 
     # -----
     # solve

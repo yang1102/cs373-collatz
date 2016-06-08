@@ -13,8 +13,16 @@ FILES :=                              \
 #    collatz-tests/EID-TestCollatz.out \
 #    collatz-tests/EID-TestCollatz.py  \
 
+ifeq ($(CI), true)
+    COVERAGE := coverage
+    PYLINT   := pylint
+else
+    COVERAGE := coverage-3.5
+	PYLINT   := pylint3
+endif
+
 .pylintrc:
-	pylint --disable=bad-whitespace,missing-docstring,pointless-string-statement --reports=n --generate-rcfile > $@
+	$(PYLINT) --disable=bad-whitespace,missing-docstring,pointless-string-statement --reports=n --generate-rcfile > $@
 
 collatz-tests:
 	git clone https://github.com/cs373-summer-2016/collatz-tests.git
@@ -25,19 +33,19 @@ Collatz.html: Collatz.py
 Collatz.log:
 	git log > Collatz.log
 
-RunCollatz.tmp: RunCollatz.in RunCollatz.out RunCollatz.py
-	-pylint Collatz.py
-	-pylint RunCollatz.py
+RunCollatz.tmp: .pylintrc RunCollatz.in RunCollatz.out RunCollatz.py
+	-$(PYLINT) Collatz.py
+	-$(PYLINT) RunCollatz.py
 	./RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 	diff RunCollatz.tmp RunCollatz.out
 	python3 -m cProfile RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 	cat RunCollatz.tmp
 
-TestCollatz.tmp: TestCollatz.py
-	-pylint Collatz.py
-	-pylint TestCollatz.py
-	coverage-3.5 run    --branch TestCollatz.py >  TestCollatz.tmp 2>&1
-	coverage-3.5 report -m                      >> TestCollatz.tmp
+TestCollatz.tmp: .pylintrc TestCollatz.py
+	-$(PYLINT) Collatz.py
+	-$(PYLINT) TestCollatz.py
+	$(COVERAGE) run    --branch TestCollatz.py >  TestCollatz.tmp 2>&1
+	$(COVERAGE) report -m                      >> TestCollatz.tmp
 	cat TestCollatz.tmp
 
 check:
@@ -61,10 +69,14 @@ check:
 
 clean:
 	rm -f  .coverage
+	rm -f  .pylintrc
 	rm -f  *.pyc
+	rm -f  Collatz.html
+	rm -f  Collatz.log
 	rm -f  RunCollatz.tmp
 	rm -f  TestCollatz.tmp
 	rm -rf __pycache__
+	rm -rf collatz-tests
 
 config:
 	git config -l
@@ -74,12 +86,6 @@ format:
 	autopep8 -i RunCollatz.py
 	autopep8 -i TestCollatz.py
 
-scrub:
-	make clean
-	rm -f  Collatz.html
-	rm -f  Collatz.log
-	rm -rf collatz-tests
-
 status:
 	make clean
 	@echo
@@ -87,4 +93,4 @@ status:
 	git remote -v
 	git status
 
-test: .pylintrc Collatz.html Collatz.log RunCollatz.tmp TestCollatz.tmp collatz-tests check
+test: Collatz.html Collatz.log RunCollatz.tmp TestCollatz.tmp collatz-tests check

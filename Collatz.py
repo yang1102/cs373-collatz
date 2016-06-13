@@ -7,7 +7,7 @@
 # ---------------------------
 
 
-cache = {1:1}
+CACHE = {1:1}
 
 # ------------
 # collatz_read
@@ -26,23 +26,23 @@ def collatz_read(line):
 # collatz_eval
 # ------------
 
-def collatz_eval(low, up):
+def collatz_eval(low, high):
     """
-    i the beginning of the range, inclusive
-    j the end       of the range, inclusive
+    low the beginning of the range, inclusive
+    high the end       of the range, inclusive
     return the max cycle length of the range [i, j]
     """
-    if low > up:
-        temp = up
-        up = low
+    if low > high:
+        temp = high
+        high = low
         low = temp
-    if low < (up//2+1):
-        low = up//2+1
+    if low < (high//2+1):
+        low = high//2+1
 
     max_result = 0
-    for num in range(low, up+1):
-        if num in cache:
-            result = cache[num]
+    for num in range(low, high+1):
+        if num in CACHE:
+            result = CACHE[num]
         else:
             result = cycle_length(num)
         if result > max_result:
@@ -50,16 +50,22 @@ def collatz_eval(low, up):
     return max_result
 
 
+# ------------
+# cycle_length
+# ------------
+
 def cycle_length(num):
-    global dic
-    global cache
+    """
+    return the cycle length of the num
+    """
+    global CACHE
     tempdic = {}
     lnum = []
     result = 1
-    temp = num   
+    temp = num
     while temp!=1:
-        if temp in cache:
-            result += cache[temp]-1
+        if temp in CACHE:
+            result += CACHE[temp]-1
             break
         else:
             if  temp%2==0:
@@ -68,12 +74,12 @@ def cycle_length(num):
             else:
                 temp = temp + (temp>>1) + 1
                 result+=2
-                tempdic[temp]=result;
-                lnum.append(temp)                
-    cache[num] = result
+                tempdic[temp]=result
+                lnum.append(temp)
+    CACHE[num] = result
     for i in lnum:
-        cache[i] = result - tempdic[i]+1
-    return result 
+        CACHE[i] = result - tempdic[i]+1
+    return result
 
 
 # -------------
@@ -81,29 +87,29 @@ def cycle_length(num):
 # -------------
 
 
-def collatz_print(w, i, j, v):
+def collatz_print(writer, low, high, val):
     """
     print three ints
-    w a writer
-    i the beginning of the range, inclusive
-    j the end       of the range, inclusive
-    v the max cycle length
+    writer a writer
+    low the beginning of the range, inclusive
+    high the end       of the range, inclusive
+    val the max cycle length
     """
-    w.write(str(i) + " " + str(j) + " " + str(v) + "\n")
+    writer.write(str(low) + " " + str(high) + " " + str(val) + "\n")
 
 # -------------
 # collatz_solve
 # -------------
 
 
-def collatz_solve(rd, wr):
+def collatz_solve(reader, writer):
     """
-    rd a reader
-    wr a writer
+    reader a reader
+    writer a writer
     """
-    for line in rd:
+    for line in reader:
         if line in ['\n','\r\n']:
             break
-        low, up = collatz_read(line)
-        val = collatz_eval(low, up)
-        collatz_print(wr, low, up, val)
+        low, high = collatz_read(line)
+        val = collatz_eval(low, high)
+        collatz_print(writer, low, high, val)

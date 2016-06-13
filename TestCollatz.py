@@ -42,7 +42,7 @@ class TestCollatz (TestCase):
 
     #Test blank space
     def test_read_3(self):
-        s = "100              200\n"
+        s = "100           200\n"
         i, j = collatz_read(s)
         self.assertEqual(i, 100)
         self.assertEqual(j, 200)
@@ -89,8 +89,8 @@ class TestCollatz (TestCase):
     #Test if the number out of range
     def test_print_2(self):
         w = StringIO()
-        collatz_print(w, 999999, 999998, 259)
-        self.assertEqual(w.getvalue(), "999999 999998 259\n")
+        collatz_print(w, 1, 999999, 525)
+        self.assertEqual(w.getvalue(), "1 999999 525\n")
 
     # -----
     # solve
@@ -103,6 +103,20 @@ class TestCollatz (TestCase):
         self.assertEqual(
             w.getvalue(), "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n")
 
+    #test if the input is a blank line 
+    def test_solve2(self):
+        r = StringIO("\n")
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(
+            w.getvalue(), '')
+
+    def test_solve3(self):
+        r = StringIO("100 199\n200 299\n300 399\n400 499\n")
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(
+            w.getvalue(), "100 199 125\n200 299 128\n300 399 144\n400 499 142\n")
 
 
 # ----

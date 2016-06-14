@@ -1,0 +1,79 @@
+commit 1c67327422cbead9f6366668dfe4d315c3a51527
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Mon Jun 13 21:04:11 2016 -0500
+
+    This closes #10, closes #15 and add more unit tests
+
+commit b401e37ce64f5ba7a085d671f4de61ff46d29b2c
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Mon Jun 13 18:40:10 2016 -0500
+
+    Add more acceptance tests and unit test also closes #14 and closes #9
+
+commit 2738343cb3ece4b0bbe46dcc5cf1910215fb1c67
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Mon Jun 13 17:00:04 2016 -0500
+
+    Improved SphereCollatz.py and closes #13 and #10
+
+commit 5d381d30421d0bc9fe33be281f7f3c941f514969
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Tue Jun 7 22:19:25 2016 -0500
+
+    This closes #8 and fixes #11 #12 by creating SphereCollatz.py and fix the Sphere error
+
+commit 89da3d3e10d2a36d796fc073b498c27ce2675ff0
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Tue Jun 7 20:43:48 2016 -0500
+
+    Implement a simple possible solution and delete the unused files
+
+commit 4d7cff97e7e83ededce6dc53cd36f281c717eb65
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Tue Jun 7 19:08:52 2016 -0500
+
+    This closes #7 by adding more unit tests to each function and run the coverage on CS machine
+
+commit 0b99d902593e475815d9a4ee488e654c09ca46b2
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Tue Jun 7 00:53:24 2016 -0500
+
+    This closes #6 by giving the correct unit tests instead of 1
+
+commit de030df63c5307c0c12cff0bd3dc8f7377d30625
+Author: yang1102 <yangshy2012@gmail.com>
+Date:   Mon Jun 6 17:43:56 2016 -0500
+
+    Fix .travis.yml to make test
+    
+    After taking class on Monday, the Professor said we don't have to worry about Travis CI detecting branches. Therefore I removed the blacklist and whitelist.
+
+commit 51476054028b7021bb5cd4d3f14bf8689df22286
+Author: Shuoyi Yang <syang2@cs.utexas.edu>
+Date:   Mon Jun 6 17:36:57 2016 -0500
+
+    This closes #5 by running make test on CS machine and after it successfully build, push it to my private code repo and then test on Travis CI
+
+commit 75ad87f1c461f28ed75c404c002f93d309beed05
+Author: yang1102 <yangshy2012@gmail.com>
+Date:   Mon Jun 6 00:06:50 2016 -0500
+
+    Update .travis.yml
+
+commit 53742d2c7d6a0db7d6f206928007a3f4e66f315f
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Mon Jun 6 00:03:36 2016 -0500
+
+    Build specific branches
+
+commit a359675ad51d369d00069f651d01e8d838018a0f
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Sun Jun 5 23:42:55 2016 -0500
+
+    start building travis
+
+commit 60ed26ad6a6ae67fbab9e43f3d34d493444503dd
+Author: yang1102 <yangshy2012@gmail.com>
+Date:   Sun Jun 5 21:26:08 2016 -0500
+
+    Initial commit

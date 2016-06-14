@@ -8,7 +8,8 @@
 
 
 CACHE = {1:1}
-
+MAX_VALUE = 837799
+MAX_CYCLE_LENGTH = 525
 # ------------
 # collatz_read
 # ------------
@@ -32,13 +33,16 @@ def collatz_eval(low, high):
     high the end       of the range, inclusive
     return the max cycle length of the range [i, j]
     """
+    assert low > 0
+    assert high > 0
     if low > high:
         temp = high
         high = low
         low = temp
     if low < (high//2+1):
         low = high//2+1
-
+    if low <= MAX_VALUE <= high:
+        return MAX_CYCLE_LENGTH
     max_result = 0
     for num in range(low, high+1):
         if num in CACHE:
@@ -58,28 +62,16 @@ def cycle_length(num):
     """
     return the cycle length of the num
     """
-    global CACHE
-    tempdic = {}
-    lnum = []
-    result = 1
-    temp = num
-    while temp!=1:
-        if temp in CACHE:
-            result += CACHE[temp]-1
-            break
-        else:
-            if  temp%2==0:
-                temp = temp//2
-                result+=1
+    assert num > 0
+    if num == 1:
+        return 1
+    else:
+        if num not in CACHE:
+            if num%2==0:
+                CACHE[num] = 1+cycle_length(num//2)
             else:
-                temp = temp + (temp>>1) + 1
-                result+=2
-                tempdic[temp]=result
-                lnum.append(temp)
-    CACHE[num] = result
-    for i in lnum:
-        CACHE[i] = result - tempdic[i]+1
-    return result
+                CACHE[num] = 2+cycle_length(num+(num>>1)+1)
+        return CACHE[num]
 
 
 # -------------
@@ -108,7 +100,7 @@ def collatz_solve(reader, writer):
     writer a writer
     """
     for line in reader:
-        if line in ['\n','\r\n']:
+        if not line.strip():
             break
         low, high = collatz_read(line)
         val = collatz_eval(low, high)

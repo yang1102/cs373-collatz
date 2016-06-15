@@ -1,8 +1,30 @@
+commit e2e53522ce4227e2474c59cd44f0770dab4c7eb3
+Merge: 705552c 3f6ab77
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Tue Jun 14 20:37:55 2016 -0500
+
+    Final push and double check with the submission requirement
+
 commit 705552c13de7f2fb0bc8e3fc46fcc59f003f563c
 Author: Shuoyi Yang <yangshy2012@gmail.com>
 Date:   Tue Jun 14 20:30:38 2016 -0500
 
     Final push and double check with the submission requirement
+
+commit 3f6ab774554709c850171d75646bc2f9068b9613
+Merge: 9c26d4b 0192bba
+Author: yang1102 <yangshy2012@gmail.com>
+Date:   Mon Jun 13 21:50:20 2016 -0500
+
+    Merge pull request #16 from yang1102/master
+    
+    Update .gitignore file
+
+commit 0192bba48f6e66cd8b5ba36b4027a006e87f2792
+Author: Shuoyi Yang <yangshy2012@gmail.com>
+Date:   Mon Jun 13 21:41:00 2016 -0500
+
+    Update .gitignore file
 
 commit 9c26d4b3f33581d9f6336990f16a4a3a2515bd84
 Author: Shuoyi Yang <yangshy2012@gmail.com>

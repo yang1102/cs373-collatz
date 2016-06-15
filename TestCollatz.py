@@ -33,14 +33,14 @@ class TestCollatz (TestCase):
         self.assertEqual(i,  1)
         self.assertEqual(j, 10)
 
-    #Test read range
+    # Test read range
     def test_read_2(self):
         line = "1 999999\n"
         i, j = collatz_read(line)
         self.assertEqual(i,  1)
         self.assertEqual(j, 999999)
 
-    #Test blank space
+    # Test blank space
     def test_read_3(self):
         line = "100           200\n"
         i, j = collatz_read(line)
@@ -53,7 +53,7 @@ class TestCollatz (TestCase):
 
     def test_eval_1(self):
         val = collatz_eval(1, 10)
-        self.assertEqual(val,20)
+        self.assertEqual(val, 20)
 
     def test_eval_2(self):
         val = collatz_eval(100, 200)
@@ -66,27 +66,32 @@ class TestCollatz (TestCase):
     def test_eval_4(self):
         val = collatz_eval(900, 1000)
         self.assertEqual(val, 174)
+
     def test_eval_5(self):
         val = collatz_eval(5, 5)
         self.assertEqual(val, 6)
 
-    #Test reversed number
+    # Test reversed number
     def test_eval_6(self):
         val = collatz_eval(6, 5)
         self.assertEqual(val, 9)
+
     def test_eval_7(self):
         val = collatz_eval(1, 1)
         self.assertEqual(val, 1)
+
     def test_eval_8(self):
         val = collatz_eval(1, 999999)
         self.assertEqual(val, 525)
-    #Test zero
+    # Test zero
+
     def test_eval_9(self):
         with self.assertRaises(AssertionError):
-            collatz_eval(0,10)
+            collatz_eval(0, 10)
+
     def test_eval_10(self):
         with self.assertRaises(AssertionError):
-            collatz_eval(-4,-1)
+            collatz_eval(-4, -1)
 
     # -----
     # print
@@ -97,7 +102,7 @@ class TestCollatz (TestCase):
         collatz_print(writer, 1, 10, 20)
         self.assertEqual(writer.getvalue(), "1 10 20\n")
 
-    #Test if the number out of range
+    # Test if the number out of range
     def test_print_2(self):
         writer = StringIO()
         collatz_print(writer, 1, 999999, 525)
@@ -114,7 +119,7 @@ class TestCollatz (TestCase):
         self.assertEqual(
             writer.getvalue(), "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n")
 
-    #test if the input is a blank line
+    # test if the input is a blank line
     def test_solve2(self):
         reader = StringIO("\n")
         writer = StringIO()

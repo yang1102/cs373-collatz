@@ -7,12 +7,13 @@
 # ---------------------------
 
 
-CACHE = {1:1}
+CACHE = {1: 1}
 MAX_VALUE = 837799
 MAX_CYCLE_LENGTH = 525
 # ------------
 # collatz_read
 # ------------
+
 
 def collatz_read(line):
     """
@@ -27,6 +28,7 @@ def collatz_read(line):
 # collatz_eval
 # ------------
 
+
 def collatz_eval(low, high):
     """
     low the beginning of the range, inclusive
@@ -39,12 +41,12 @@ def collatz_eval(low, high):
         temp = high
         high = low
         low = temp
-    if low < (high//2+1):
-        low = high//2+1
+    if low < (high // 2 + 1):
+        low = high // 2 + 1
     if low <= MAX_VALUE <= high:
         return MAX_CYCLE_LENGTH
     max_result = 0
-    for num in range(low, high+1):
+    for num in range(low, high + 1):
         if num in CACHE:
             result = CACHE[num]
         else:
@@ -67,10 +69,10 @@ def cycle_length(num):
         return 1
     else:
         if num not in CACHE:
-            if num%2==0:
-                CACHE[num] = 1+cycle_length(num//2)
+            if num % 2 == 0:
+                CACHE[num] = 1 + cycle_length(num // 2)
             else:
-                CACHE[num] = 2+cycle_length(num+(num>>1)+1)
+                CACHE[num] = 2 + cycle_length(num + (num >> 1) + 1)
         return CACHE[num]
 
 

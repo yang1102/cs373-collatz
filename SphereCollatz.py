@@ -8,21 +8,14 @@
 
 import sys
 
-<<<<<<< HEAD
 CACHE = {1: 1}
-=======
-CACHE = {1:1}
->>>>>>> 3f6ab774554709c850171d75646bc2f9068b9613
 MAX_VALUE = 837799
 MAX_CYCLE_LENGTH = 525
 # ------------
 # collatz_read
 # ------------
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3f6ab774554709c850171d75646bc2f9068b9613
 def collatz_read(line):
     """
     read two ints
@@ -36,10 +29,7 @@ def collatz_read(line):
 # collatz_eval
 # ------------
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3f6ab774554709c850171d75646bc2f9068b9613
 def collatz_eval(low, high):
     """
     low the beginning of the range, inclusive
@@ -52,21 +42,12 @@ def collatz_eval(low, high):
         temp = high
         high = low
         low = temp
-<<<<<<< HEAD
     if low < (high // 2 + 1):
         low = high // 2 + 1
     if low <= MAX_VALUE <= high:
         return MAX_CYCLE_LENGTH
     max_result = 0
     for num in range(low, high + 1):
-=======
-    if low < (high//2+1):
-        low = high//2+1
-    if low <= MAX_VALUE <= high:
-        return MAX_CYCLE_LENGTH
-    max_result = 0
-    for num in range(low, high+1):
->>>>>>> 3f6ab774554709c850171d75646bc2f9068b9613
         if num in CACHE:
             result = CACHE[num]
         else:
@@ -89,17 +70,10 @@ def cycle_length(num):
         return 1
     else:
         if num not in CACHE:
-<<<<<<< HEAD
             if num % 2 == 0:
                 CACHE[num] = 1 + cycle_length(num // 2)
             else:
                 CACHE[num] = 2 + cycle_length(num + (num >> 1) + 1)
-=======
-            if num%2==0:
-                CACHE[num] = 1+cycle_length(num//2)
-            else:
-                CACHE[num] = 2+cycle_length(num+(num>>1)+1)
->>>>>>> 3f6ab774554709c850171d75646bc2f9068b9613
         return CACHE[num]
 
 
@@ -140,8 +114,4 @@ def collatz_solve(reader, writer):
 # -------------
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     collatz_solve(sys.stdin, sys.stdout)
-=======
-    collatz_solve(sys.stdin, sys.stdout)
->>>>>>> 3f6ab774554709c850171d75646bc2f9068b9613

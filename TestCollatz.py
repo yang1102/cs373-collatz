@@ -83,11 +83,10 @@ class TestCollatz (TestCase):
     #Test zero
     def test_eval_9(self):
         with self.assertRaises(AssertionError):
-            val = collatz_eval(0,10)
-
+            collatz_eval(0,10)
     def test_eval_10(self):
         with self.assertRaises(AssertionError):
-            val = collatz_eval(-4,-1)
+            collatz_eval(-4,-1)
 
     # -----
     # print
